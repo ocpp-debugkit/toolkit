@@ -26,6 +26,7 @@ import {
   meterValueZeroScenario,
   statusTransitionsLegalScenario,
   bootOutsideRepeatWindowScenario,
+  meterValueNegativeScenario,
 } from './index.js';
 import { parseTrace, buildSessionTimeline, detectFailures } from '../core/index.js';
 
@@ -34,8 +35,8 @@ import { parseTrace, buildSessionTimeline, detectFailures } from '../core/index.
 // ---------------------------------------------------------------------------
 
 describe('scenario registry', () => {
-  it('exports exactly 23 scenarios', () => {
-    expect(scenarios).toHaveLength(23);
+  it('exports exactly 24 scenarios', () => {
+    expect(scenarios).toHaveLength(24);
   });
 
   it('exports scenario names in order', () => {
@@ -63,6 +64,7 @@ describe('scenario registry', () => {
       'meter-value-zero',
       'status-transitions-legal',
       'boot-outside-repeat-window',
+      'meter-value-negative',
     ]);
   });
 
@@ -99,6 +101,7 @@ describe('scenario registry', () => {
     expect(getScenario('meter-value-zero')).toBe(meterValueZeroScenario);
     expect(getScenario('status-transitions-legal')).toBe(statusTransitionsLegalScenario);
     expect(getScenario('boot-outside-repeat-window')).toBe(bootOutsideRepeatWindowScenario);
+    expect(getScenario('meter-value-negative')).toBe(meterValueNegativeScenario);
   });
 
   it('getScenario returns undefined for unknown name', () => {
@@ -277,6 +280,14 @@ describe('scenario engine integration', () => {
     const sessions = buildSessionTimeline(result.events);
     const failures = detectFailures(result.events, sessions);
     expect(failures).toHaveLength(0);
+  });
+
+  it('meter-value-negative: detects METER_VALUE_ANOMALY', () => {
+    const trace = JSON.stringify(meterValueNegativeScenario.trace);
+    const result = parseTrace(trace);
+    const sessions = buildSessionTimeline(result.events);
+    const failures = detectFailures(result.events, sessions);
+    expect(failures.some((f) => f.code === 'METER_VALUE_ANOMALY')).toBe(true);
   });
 });
 
