@@ -30,7 +30,11 @@ export default {
       {
         timestamp: '2026-03-01T09:00:00.500Z',
         direction: 'CSMS_TO_CS',
-        message: [3, 'msg-001', { currentTime: '2026-03-01T09:00:00.500Z', interval: 300, status: 'Accepted' }],
+        message: [
+          3,
+          'msg-001',
+          { currentTime: '2026-03-01T09:00:00.500Z', interval: 300, status: 'Accepted' },
+        ],
       },
       {
         timestamp: '2026-03-01T09:00:30.000Z',
