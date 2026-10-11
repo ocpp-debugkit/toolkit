@@ -28,6 +28,7 @@ import repeatedBootNotification from './__scenarios__/repeated-boot-notification
 import meterValueZero from './__scenarios__/meter-value-zero.js';
 import statusTransitionsLegal from './__scenarios__/status-transitions-legal.js';
 import bootOutsideRepeatWindow from './__scenarios__/boot-outside-repeat-window.js';
+import meterValueNegative from './__scenarios__/meter-value-negative.js';
 
 // ---------------------------------------------------------------------------
 // Scenarios derived from core fixtures
@@ -82,6 +83,7 @@ const repeatedBootNotificationScenario: Scenario = repeatedBootNotification as u
 const meterValueZeroScenario: Scenario = meterValueZero as unknown as Scenario;
 const statusTransitionsLegalScenario: Scenario = statusTransitionsLegal as unknown as Scenario;
 const bootOutsideRepeatWindowScenario: Scenario = bootOutsideRepeatWindow as unknown as Scenario;
+const meterValueNegativeScenario: Scenario = meterValueNegative as unknown as Scenario;
 
 // ---------------------------------------------------------------------------
 // Registry
@@ -111,6 +113,7 @@ export const scenarios = [
   meterValueZeroScenario,
   statusTransitionsLegalScenario,
   bootOutsideRepeatWindowScenario,
+  meterValueNegativeScenario,
 ] as const;
 
 export const scenarioNames = [
@@ -137,6 +140,7 @@ export const scenarioNames = [
   'meter-value-zero',
   'status-transitions-legal',
   'boot-outside-repeat-window',
+  'meter-value-negative',
 ] as const;
 
 export {
@@ -163,6 +167,7 @@ export {
   meterValueZeroScenario,
   statusTransitionsLegalScenario,
   bootOutsideRepeatWindowScenario,
+  meterValueNegativeScenario,
 };
 
 export { compareScenarioReports } from './compare.js';
