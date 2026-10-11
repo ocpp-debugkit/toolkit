@@ -21,6 +21,7 @@ step). Do not edit between the markers by hand. Full history lives in
 sections further down.
 
 <!-- RELEASE-LOG:START -->
+- `0.4.9` (2026-10-11): meter-value-negative: add a scenario that drives the negative branch of METER_VALUE_ANOMALY. The register reads -50 Wh, which is physically impossible, so the rule fires. meter-anomaly only covers the decreasing branch, so this is the missing half.
 - `0.4.8` (2026-08-20): added a new scenario: boot-outside-repeat-window; Add a status-transitions-legal scenario to ensure a fully legal OCPP 1.6 status path reports no failure.
 - `0.4.7` (2026-08-10): Add a meter-value-zero scenario to ensure a flat zero meter register does not report a failure.; Add `repeated-boot-notification` scenario covering the `REPEATED_BOOT_NOTIFICATION` detection rule. The synthetic trace reboots a station three times in three minutes (one `BootNotification` per minute) followed by a single `Heartbeat`, exercising the 5 minute window used by the rule.
 - `0.4.6` (2026-08-08): Add `heartbeat-timeout` scenario covering the `TIMEOUT_NO_HEARTBEAT` detection rule. The synthetic trace boots a station with `interval=300`, then sends a `StatusNotification` past the 2× interval threshold (`06:12:00.000Z`) with no `Heartbeat` anywhere in the trace.
@@ -558,7 +559,7 @@ to 6.
 
 | Package | Status | Version |
 |---------|--------|---------|
-| `@ocpp-debugkit/toolkit` | published | 0.4.8 |
+| `@ocpp-debugkit/toolkit` | published | 0.4.9 |
 | `@ocpp-debugkit/core` | deprecated | 0.1.1 |
 | `@ocpp-debugkit/scenarios` | deprecated | 0.1.1 |
 | `@ocpp-debugkit/reporter` | deprecated | 0.1.1 |
